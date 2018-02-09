@@ -1,12 +1,25 @@
 package skatblock;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+@Entity
 public class Player {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    private final long id;
-private final String name;
+    private String name;
 
-    public Player(long id, String name){
-        this.id = id;
+    private Player(){ };
+
+    @ManyToMany
+    private Set<Game> games = new HashSet<>();
+
+    public Player(String name){
         this.name = name;
     }
 
@@ -18,4 +31,19 @@ private final String name;
         return name;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<Game> games) {
+        this.games = games;
+    }
 }

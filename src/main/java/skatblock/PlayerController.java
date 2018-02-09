@@ -1,16 +1,25 @@
 package skatblock;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(path = "/user")
 public class PlayerController {
 
 
-    @RequestMapping(method= RequestMethod.GET, path = "/user")
-    public Player getPlayer(@RequestParam(value="id") long id, @RequestParam(value="name") String name) {
-        return new Player(id, name);
+private final PlayerRepository playerRepository;
+
+@Autowired
+    public PlayerController(PlayerRepository playerRepository) {
+        this.playerRepository = playerRepository;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Player getPlayer(@RequestParam(value="name") String name) {
+        return playerRepository.findByName(name).get();
     }
 }

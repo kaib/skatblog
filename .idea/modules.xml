@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skatblock.iml" filepath="$PROJECT_DIR$/.idea/modules/skatblock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skatblock_main.iml" filepath="$PROJECT_DIR$/.idea/modules/skatblock_main.iml" group="skatblock" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skatblock_test.iml" filepath="$PROJECT_DIR$/.idea/modules/skatblock_test.iml" group="skatblock" />
+    </modules>
+  </component>
+</project>

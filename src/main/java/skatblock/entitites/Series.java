@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 @Entity
 public class Series {

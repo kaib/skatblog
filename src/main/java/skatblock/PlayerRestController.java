@@ -1,6 +1,7 @@
 package skatblock;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,13 @@ public class PlayerRestController {
   @RequestMapping(method = RequestMethod.GET, path = "{name}")
   public Player getPlayer(@PathVariable(value = "name") String name) {
     return playerRepository.findByName(name).get();
+  }
+
+  @RequestMapping(method = RequestMethod.PUT, path = "{name}")
+  public void addPlayer(@PathVariable String name){
+
+    playerRepository.save(new Player(name));
+
   }
 
 }

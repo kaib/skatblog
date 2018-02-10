@@ -1,8 +1,9 @@
 package skatblock.entitites;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Player {
@@ -11,9 +12,6 @@ public class Player {
   private long id;
 
   private String name;
-
-  @ManyToMany
-  private Set<Game> games = new HashSet<>();
 
   private Player() {
   }
@@ -38,11 +36,4 @@ public class Player {
     this.name = name;
   }
 
-  public Set<Game> getGames() {
-    return games;
-  }
-
-  public void setGames(Set<Game> games) {
-    this.games = games;
-  }
 }

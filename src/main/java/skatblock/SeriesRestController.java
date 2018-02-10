@@ -13,9 +13,10 @@ import skatblock.repositories.PlayerRepository;
 import skatblock.repositories.SeriesRepository;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/series/{id}")
+@RequestMapping(path = "/series")
 public class SeriesRestController {
 
   PlayerRepository playerRepository;
@@ -27,16 +28,27 @@ public class SeriesRestController {
                               SeriesRepository seriesRepository) {
     this.playerRepository = playerRepository;
     this.gameRepository = gameRepository;
+    this.seriesRepository = seriesRepository;
   }
 
-  @RequestMapping(method = RequestMethod.POST, path = "/game")
+  @RequestMapping(method = RequestMethod.GET)
+  public List<Series> getAllSeries() {
+    return seriesRepository.findAll();
+  }
+
+  @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+  public Series getSeries(@PathVariable Long id) {
+    validateSeriesId(id);
+    return seriesRepository.findById(id).get();
+  }
+
+  @RequestMapping(method = RequestMethod.POST, path = "/{id}/game")
   public ResponseEntity<?> addGame(@PathVariable(name = "id") Long id, @RequestBody Game g) {
 
     validateSeriesId(id);
 
 
     return seriesRepository.findById(id).map(series -> {
-      g.setSeries(series);
       Game result = gameRepository.save(g);
       series.getGames().add(g);
       seriesRepository.save(series);
@@ -47,7 +59,7 @@ public class SeriesRestController {
     }).orElse(ResponseEntity.noContent().build());
   }
 
-  @RequestMapping(method = RequestMethod.GET, path = "/game/{gameId}")
+  @RequestMapping(method = RequestMethod.GET, path = "/{id}/game/{gameId}")
   public Game getGame(@PathVariable(name = "id") Long id, @PathVariable(name = "gameId") Long gameId) {
     validateSeriesId(id);
     Series s = seriesRepository.findById(id).get();

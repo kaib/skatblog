@@ -23,8 +23,6 @@ public class Game {
   private Long multiplicator;
 
   @ManyToOne
-  private Series series;
-  @ManyToOne
   private Player player;
   @ManyToOne
   private Player vorhand;
@@ -36,7 +34,7 @@ public class Game {
 
   public Game(GAME_TYPE game_type, boolean withJacks, boolean isHand, boolean isSchneider, boolean isSchneiderAnnounced,
               boolean isSchwarz, boolean isSchwarzAnnounced, boolean isOpen, boolean isWon, boolean isBock,
-              Long multiplicator, Series series, Player player, Player vorhand, Player mittelhand, Player hinterhand) {
+              Long multiplicator, Player player, Player vorhand, Player mittelhand, Player hinterhand) {
     this.game_type = game_type;
     this.withJacks = withJacks;
     this.isHand = isHand;
@@ -48,7 +46,6 @@ public class Game {
     this.isWon = isWon;
     this.isBock = isBock;
     this.multiplicator = multiplicator;
-    this.series = series;
     this.vorhand = vorhand;
     this.player = player;
     this.mittelhand = mittelhand;
@@ -175,14 +172,6 @@ public class Game {
 
   public void setMultiplicator(Long multiplicator) {
     this.multiplicator = multiplicator;
-  }
-
-  public Series getSeries() {
-    return series;
-  }
-
-  public void setSeries(Series series) {
-    this.series = series;
   }
 
   public Player getPlayer() {

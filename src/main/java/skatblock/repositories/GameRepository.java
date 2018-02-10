@@ -1,10 +1,14 @@
-package skatblock;
+package skatblock.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import skatblock.entitites.Game;
 
 import java.util.Collection;
+import java.util.Optional;
 
-public interface GameRepository extends JpaRepository<Game,Long>{
+public interface GameRepository extends JpaRepository<Game, Long> {
 
-    Collection<Game> findByPlayerName(String name);
+  Optional<Game> findById(Long id);
+
+  Collection<Game> findByPlayerName(String name);
 }

@@ -1,4 +1,4 @@
-package skatblock;
+package skatblock.entitites;
 
 import javax.persistence.*;
 import java.util.HashSet;

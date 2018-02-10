@@ -5,21 +5,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import skatblock.entitites.Player;
+import skatblock.repositories.PlayerRepository;
 
 @RestController
-@RequestMapping(path = "/user")
-public class PlayerController {
+@RequestMapping(path = "/player")
+public class PlayerRestController {
 
 
-private final PlayerRepository playerRepository;
+  private final PlayerRepository playerRepository;
 
-@Autowired
-    public PlayerController(PlayerRepository playerRepository) {
-        this.playerRepository = playerRepository;
-    }
+  @Autowired
+  public PlayerRestController(PlayerRepository playerRepository) {
+    this.playerRepository = playerRepository;
+  }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Player getPlayer(@RequestParam(value="name") String name) {
-        return playerRepository.findByName(name).get();
-    }
+  @RequestMapping(method = RequestMethod.GET)
+  public Player getPlayer(@RequestParam(value = "name") String name) {
+    return playerRepository.findByName(name).get();
+  }
 }

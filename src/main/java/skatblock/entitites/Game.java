@@ -1,4 +1,6 @@
-package skatblock;
+package skatblock.entitites;
+
+import skatblock.GAME_TYPE;
 
 import javax.persistence.*;
 
@@ -31,14 +33,10 @@ public class Game {
   @ManyToOne
   private Player hinterhand;
 
-  private Game() {
-  }
 
-  public Game(Long id, GAME_TYPE game_type, boolean withJacks, boolean isHand, boolean isSchneider,
-              boolean isSchneiderAnnounced, boolean isSchwarz, boolean isSchwarzAnnounced, boolean isOpen,
-              boolean isWon, boolean isBock, Long multiplicator, Series series, Player player, Player vorhand,
-              Player mittelhand, Player hinterhand) {
-    this.id = id;
+  public Game(GAME_TYPE game_type, boolean withJacks, boolean isHand, boolean isSchneider, boolean isSchneiderAnnounced,
+              boolean isSchwarz, boolean isSchwarzAnnounced, boolean isOpen, boolean isWon, boolean isBock,
+              Long multiplicator, Series series, Player player, Player vorhand, Player mittelhand, Player hinterhand) {
     this.game_type = game_type;
     this.withJacks = withJacks;
     this.isHand = isHand;
@@ -56,6 +54,10 @@ public class Game {
     this.mittelhand = mittelhand;
     this.hinterhand = hinterhand;
   }
+
+  private Game() {
+  }
+
 
   public Long getPoints() {
     return getGame_type().getValue() * getFinalMultiplicator();
